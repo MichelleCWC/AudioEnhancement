@@ -93,9 +93,9 @@ def denoise_with_nmf_component_mask(mixture_file, W_noise, sr, n_animal=15,
 # ---------------------------------------------------------
 if __name__ == "__main__":
     noise_files = [
-        "my_audio/noise/cricket_only_speaker.wav",
-        "my_audio/noise/Motor.wav",
-        "my_audio/noise/running_water_speaker.wav",
+        "cricket_only_speaker.wav",
+        "Motor.wav",
+        "running_water_speaker.wav",
     ]
     n_bases_list = [20, 6, 20]  # bases for cricket & water
 
@@ -122,3 +122,4 @@ if __name__ == "__main__":
 
     sf.write("denoised_component_mask_enhanced.wav", denoised, sr)
     print("Denoising completed. Output saved to 'denoised_component_mask_enhanced.wav'")
+
