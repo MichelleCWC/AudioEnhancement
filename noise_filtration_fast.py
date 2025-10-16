@@ -141,6 +141,39 @@ def denoise_with_nmf_component_mask(
 # 3. Example usage
 # ---------------------------------------------------------
 if __name__ == "__main__":
+    # if no motor sounds( processing audio enhancement quicker)
+    # noise_files = [
+    #     "my_audio/noise/cricket_only_speaker.wav",
+    #     "my_audio/noise/running_water_speaker.wav",
+    #     "my_audio/noise/wind_n_leave.wav"
+    # ]
+    # n_bases_list = [25, 20, 6]  # more bases for complex noise
+
+    # # Build noise dictionary
+    # W_noise, sr, n_fft, hop = build_noise_dict(noise_files, n_bases_list)
+
+    # # Input audio
+    # mixture_file = "my_audio/10_seconds_speaker/Wombat_TrackA_chunk1.wav"
+
+    # start_time = time.time()
+    # denoised, sr = denoise_with_nmf_component_mask(
+    #     mixture_file,
+    #     W_noise,
+    #     sr,
+    #     n_animal=20,
+    #     n_iter=300,
+    #     n_fft=2048,
+    #     hop=512,
+    #     alpha_cricket=0.9,
+    #     alpha_wind=0.8,
+    #     n_cricket_bases=20,
+    #     n_wind_bases=6,
+    #     low_freq_cutoff=20,
+    #     animal_gain=1.4
+    # )
+    # end_time = time.time()
+
+    # if noise : cricket,motor, running water, wind n leaves rusttling
     noise_files = [
         "my_audio/noise/cricket_only_speaker.wav",
         "my_audio/noise/Motor.wav",
@@ -176,4 +209,5 @@ if __name__ == "__main__":
 
     sf.write("denoised_component_mask_enhanced_Frog.wav", denoised, sr)
     print("Denoising completed. Output saved to 'denoised_component_mask_enhanced.wav'")
+
 
