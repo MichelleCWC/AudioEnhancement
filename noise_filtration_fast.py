@@ -147,7 +147,7 @@ if __name__ == "__main__":
     #     "my_audio/noise/running_water_speaker.wav",
     #     "my_audio/noise/wind_n_leave.wav"
     # ]
-    # n_bases_list = [25, 20, 6]  # more bases for complex noise
+    # n_bases_list = [20, 20, 6]  # more bases for complex noise
 
     # # Build noise dictionary
     # W_noise, sr, n_fft, hop = build_noise_dict(noise_files, n_bases_list)
@@ -178,9 +178,9 @@ if __name__ == "__main__":
         "my_audio/noise/cricket_only_speaker.wav",
         "my_audio/noise/Motor.wav",
         "my_audio/noise/running_water_speaker.wav",
-        "my_audio/noise/wind_n_leave.wav"
+        "my_audio/noise/wind_n_leave.wav" # contain wind, leave rustling, some human sounds
     ]
-    n_bases_list = [25, 6, 20, 6]  # more bases for complex noise
+    n_bases_list = [20, 6, 20, 6]  # more bases for complex noise, increasing the bases wouldn't improve the performance, optimal for 20 atm 
 
     # Build noise dictionary
     W_noise, sr, n_fft, hop = build_noise_dict(noise_files, n_bases_list)
@@ -195,19 +195,20 @@ if __name__ == "__main__":
         sr,
         n_animal=20,
         n_iter=300,
-        n_fft=2048,
+        n_fft=2048, # chnage n_fft & hop if want better sound quality, but increasing process time
         hop=512,
-        alpha_cricket=0.9,
-        alpha_wind=0.8,
+        alpha_cricket=0.9, # Adjust alpha (range from 0-1) for certain noise for soft masking
+        alpha_wind=0.8, 
         n_cricket_bases=20,
         n_wind_bases=6,
-        low_freq_cutoff=20,
-        animal_gain=1.4
+        low_freq_cutoff=20, # for high-pass filter
+        animal_gain=1.4 # can be increased for amplifying animal sounds but the gain is required to be less than 2 to prevent sounds from clipping
     )
     end_time = time.time()
     print(f"Elapsed time: {end_time - start_time:.2f} seconds")
 
     sf.write("denoised_component_mask_enhanced_Frog.wav", denoised, sr)
     print("Denoising completed. Output saved to 'denoised_component_mask_enhanced.wav'")
+
 
 
